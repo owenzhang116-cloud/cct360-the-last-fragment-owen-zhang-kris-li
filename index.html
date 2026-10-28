@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore a recovered phone, collect clues, and decide whether to finish a damaged photograph. A fictional interactive mystery.">
+  <title>The Last Fragment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the story</a>
+  <div class="phone">
+    <header class="phone-header">
+      <div class="device-line"><span>RECOVERED PHONE</span><span id="saveStatus">Progress saves on this device</span></div>
+      <h1>The Last Fragment</h1>
+      <p>A phone. A photograph. Someone waiting.</p>
+    </header>
+
+    <main id="main">
+      <p id="storageWarning" class="notice" hidden>Saving is unavailable in this browser. You can still play, but keep this tab open to retain your progress.</p>
+      <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+
+      <section id="home" aria-labelledby="homeTitle">
+        <p class="eyebrow">01 / THE PHONE</p>
+        <h2 id="homeTitle" tabindex="-1">Someone is still online.</h2>
+        <p>Alex has been missing for three days. This old phone was left outside your door. A new message has arrived from his account.</p>
+        <p>Explore the messages, photo and notes in any order. Collect evidence and work out who is asking for help.</p>
+        <div class="progress-box"><strong id="homeProgress">0 of 4 clues collected</strong><span id="homeConnections">0 of 2 connections checked</span><p id="homeStatus">Start with anything that catches your attention.</p></div>
+        <div class="app-grid">
+          <button id="openMessages" class="app-button" type="button"><span class="app-letter">M</span><strong>Messages</strong><span id="messagesSummary">One withdrawn message</span></button>
+          <button id="openPhotos" class="app-button" type="button"><span class="app-letter">P</span><strong>Photos</strong><span id="photosSummary">One damaged photograph</span></button>
+          <button id="openNotes" class="app-button" type="button"><span class="app-letter">N</span><strong>Old notes</strong><span id="notesSummary">Three saved entries</span></button>
+          <button id="openEvidence" class="app-button" type="button"><span class="app-letter">E</span><strong>Evidence</strong><span id="evidenceSummary">Make the connections</span></button>
+        </div>
+        <button id="homeFinal" class="primary" type="button" hidden>Open the final decision</button>
+        <p class="small">A fictional mystery. Your choices stay in this browser until you start again.</p>
+      </section>
+
+      <section id="messages" aria-labelledby="messagesTitle" hidden>
+        <p class="eyebrow">02 / MESSAGES</p>
+        <h2 id="messagesTitle" tabindex="-1">A familiar name.</h2>
+        <div class="contact"><span class="avatar" id="contactInitial">A</span><div><strong id="contactName">Alex</strong><span id="contactStatus">Online</span></div></div>
+        <p class="timestamp">TODAY, 02:13</p>
+        <div class="chat-bubble">You finally opened it.</div>
+        <div class="chat-bubble">The photo in the album is damaged. Can you fix it?</div>
+        <div class="chat-bubble withdrawn" id="withdrawnMessage">This message was withdrawn.</div>
+        <button id="recoverMessage" type="button">Recover withdrawn message</button>
+        <button id="collectA" class="primary" type="button" hidden>Collect this message</button>
+        <div id="newMessages" class="new-messages" hidden>
+          <p class="timestamp">AFTER THE PHOTO WAS REPAIRED</p>
+          <div class="chat-bubble">Yes. That's it.</div>
+          <div class="chat-bubble">One more piece. Don't stop.</div>
+        </div>
+        <p id="chatObservation" class="observation">Why was that message withdrawn?</p>
+        <button id="chatToPhoto" class="text-button" type="button">Inspect the photograph &rarr;</button>
+      </section>
+
+      <section id="photos" aria-labelledby="photosTitle" hidden>
+        <p class="eyebrow">03 / PHOTO ARCHIVE</p>
+        <h2 id="photosTitle" tabindex="-1">The same hallway.</h2>
+        <p id="photoDescription">A damaged photograph. Something is standing at the far end.</p>
+        <button id="enlargePhoto" class="photo-button" type="button" aria-label="Enlarge the hallway photograph">
+          <span class="photo-frame"><img id="hallwayPhoto" src="images/hallway-a.png" alt="An apartment hallway with a small dark figure at its far end"><span id="firstPatch" class="damage first-patch" aria-hidden="true">UNREADABLE</span><span id="lastPatch" class="damage last-patch" aria-hidden="true">MISSING FRAGMENT</span></span>
+        </button>
+        <div class="photo-meta"><span id="photoVersion">Original photograph</span><span>Tap photo to enlarge</span></div>
+        <div class="button-row" id="photoComparison" hidden><button id="viewOriginal" type="button" aria-pressed="false">Original</button><button id="viewRepaired" type="button" aria-pressed="true">Partly restored</button></div>
+        <button id="repairPhoto" class="primary" type="button">Restore part of the photo</button>
+        <p id="photoObservation" class="observation" hidden>The hallway is unchanged. The figure is closer. Compare both versions.</p>
+        <button id="collectC" type="button" hidden>Collect this change</button>
+        <p id="photoLock" class="small">The last fragment will remain damaged until you review the evidence.</p>
+        <div class="button-row"><button id="photoToMessages" class="text-button" type="button">Check messages &rarr;</button><button id="photoToNotes" class="text-button" type="button">Read the old notes &rarr;</button></div>
+      </section>
+
+      <section id="notes" aria-labelledby="notesTitle" hidden>
+        <p class="eyebrow">04 / OLD NOTES</p>
+        <h2 id="notesTitle" tabindex="-1">Someone was here before.</h2>
+        <p>Three entries left by the phone's previous owner. Open them in any order.</p>
+        <div class="button-row note-tabs"><button id="noteOne" type="button" aria-pressed="true">October 12</button><button id="noteTwo" type="button" aria-pressed="false">October 13</button><button id="noteThree" type="button" aria-pressed="false">October 14</button></div>
+        <article class="note-paper"><p id="noteDate" class="eyebrow">OCTOBER 12</p><h3 id="noteTitle">He never sent it.</h3><p id="noteText">Sam asked me to restore a photo. I called him. He said he had never sent those messages. It was his name, but it wasn't him.</p></article>
+        <button id="collectNote" class="primary" type="button">Collect this warning</button>
+        <p id="noteHint" class="small">A familiar name can belong to an unfamiliar sender.</p>
+        <button id="notesToEvidence" class="text-button" type="button">Review the evidence &rarr;</button>
+      </section>
+
+      <section id="evidence" aria-labelledby="evidenceTitle" hidden>
+        <p class="eyebrow">05 / EVIDENCE</p>
+        <h2 id="evidenceTitle" tabindex="-1">What belongs together?</h2>
+        <p>Select two collected clues, then check the connection. There are two questions to answer: <strong>Who is asking?</strong> and <strong>What does restoring the photo do?</strong></p>
+        <p id="evidenceCount" class="small">0 of 4 clues collected</p>
+        <div class="evidence-grid">
+          <div><button id="clueA" class="clue" type="button" aria-pressed="false" disabled><strong>A / The request</strong><span id="clueAText">A message is missing.</span></button><button id="hintA" class="text-button" type="button">Look in Messages &rarr;</button></div>
+          <div><button id="clueB" class="clue" type="button" aria-pressed="false" disabled><strong>B / A borrowed name</strong><span id="clueBText">The previous owner knew something.</span></button><button id="hintB" class="text-button" type="button">Read October 12 &rarr;</button></div>
+          <div><button id="clueC" class="clue" type="button" aria-pressed="false" disabled><strong>C / The change</strong><span id="clueCText">The photograph needs a closer look.</span></button><button id="hintC" class="text-button" type="button">Inspect Photos &rarr;</button></div>
+          <div><button id="clueD" class="clue" type="button" aria-pressed="false" disabled><strong>D / The last fragment</strong><span id="clueDText">An unfinished warning remains.</span></button><button id="hintD" class="text-button" type="button">Read October 14 &rarr;</button></div>
+        </div>
+        <p id="selectedClues">Select two clues.</p><button id="checkClues" class="primary" type="button" disabled>Check connection</button>
+        <p id="matchFeedback" class="observation" role="status" aria-live="polite"></p>
+        <div id="identityConnection" class="connection" hidden><h3>A + B / Who is asking?</h3><p>The same request has appeared under different friends' names. Alex's name is not proof that the sender is Alex.</p></div>
+        <div id="photoConnection" class="connection" hidden><h3>C + D / What does restoration do?</h3><p>Restoring the photo brings the figure closer. Leaving the final fragment damaged stopped it before. Finishing it may let it through.</p></div>
+        <p id="finalHint">Check both connections before making the final decision.</p><button id="goToFinal" class="primary" type="button" disabled>Make the final decision</button>
+      </section>
+
+      <section id="final" aria-labelledby="finalTitle" hidden>
+        <p class="eyebrow">06 / THE LAST FRAGMENT</p>
+        <h2 id="finalTitle" tabindex="-1">One piece left.</h2>
+        <div class="photo-frame final-photo"><img id="finalPhoto" src="images/hallway-b.png" alt="The figure now standing closer in the same hallway"><span id="finalPatch" class="damage last-patch" aria-hidden="true">MISSING FRAGMENT</span></div>
+        <p id="finalContact" class="contact-line">Alex is online.</p>
+        <div id="decisionPanel"><div class="chat-bubble">Please. Just the last piece. I'm almost out.</div><p>You have checked both connections. The name may be borrowed, and the repair is bringing the figure closer. What will you do?</p><div class="button-row"><button id="sealPhoto" class="primary" type="button">Seal the photo</button><button id="finishPhoto" class="danger" type="button">Restore it completely</button></div><button id="backToEvidence" class="text-button" type="button">Check the evidence again &rarr;</button></div>
+        <div id="endingPanel" hidden><p id="endingLabel" class="eyebrow"></p><h3 id="endingTitle"></h3><p id="endingText"></p><div id="loopMessages" hidden><p class="timestamp">YOU</p><div class="chat-bubble">You finally opened it.</div><div class="chat-bubble">The photo in the album is damaged. Can you fix it?</div></div><p id="endingLastLine" class="last-line"></p><div class="button-row"><button id="endingHome" type="button">Return home</button><button id="endingRestart" type="button">Start again</button></div></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Explore the phone"><button id="navHome" type="button" aria-current="page">Home</button><button id="navMessages" type="button">Messages <span id="unreadBadge" class="badge" hidden>2 new</span></button><button id="navPhotos" type="button">Photos</button><button id="navNotes" type="button">Notes</button><button id="navEvidence" type="button">Evidence</button></nav>
+    <footer><button id="restart" class="text-button" type="button">Start a new case</button><div id="restartPrompt" class="notice" hidden><p>Start a new case? This clears your saved clues, photo repairs, connections and ending.</p><div class="button-row"><button id="cancelRestart" type="button">Keep my progress</button><button id="confirmRestart" class="danger" type="button">Clear progress and restart</button></div></div><p>Fictional story. Hallway images generated using AI.</p></footer>
+  </div>
+  <dialog id="photoDialog" aria-label="Enlarged hallway photograph"><button id="closePhoto" type="button">Close photo</button><div class="photo-frame"><img id="zoomPhoto" src="images/hallway-a.png" alt=""><span id="zoomFirstPatch" class="damage first-patch" aria-hidden="true">UNREADABLE</span><span id="zoomLastPatch" class="damage last-patch" aria-hidden="true">MISSING FRAGMENT</span></div><p id="zoomCaption"></p></dialog>
+  <script src="script.js"></script>
+</body>
+</html>
